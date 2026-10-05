@@ -1,0 +1,26 @@
+# Environment variables
+.env
+
+# Python bytecode & cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Verification artifacts & logs
+verification_artifacts/
+*.log
+
+# SQLite database
+*.db
+
+# Streamlit config / cache
+.streamlit/*
+!.streamlit/config.toml

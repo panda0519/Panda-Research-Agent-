@@ -1,0 +1,15 @@
+run_id: run_ad7bdd19
+status: completed_degraded
+sources_count: 5
+gaps_count: 4
+features_count: 0
+len(existing_solutions): 5
+len(claim_verifications): 10
+len(tech_stack): 5
+len(evaluations): 0
+len(consistency_issues): 0
+
+metadata.phase_errors:
+{
+  "phase_4_ideator": "Invalid \\escape: line 33 column 416 (char 3487)"
+}

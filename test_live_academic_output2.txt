@@ -1,0 +1,18 @@
+arXiv fetch failed: 
+============================================================
+  LIVE ACADEMIC LITERATURE INTEGRATION TEST
+============================================================
+
+[1/3] Testing live arXiv query...
+  arXiv returned 0 papers
+  [OK] arXiv
+
+[2/3] Testing live Semantic Scholar query...
+  Semantic Scholar returned 0 papers
+  [OK] Semantic Scholar
+
+  Skipping full pipeline test (no papers from live APIs)
+
+============================================================
+  TEST SUITE COMPLETE
+============================================================

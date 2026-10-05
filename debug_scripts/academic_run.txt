@@ -1,0 +1,75 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\shubh\Desktop\research_agent
+configfile: pytest.ini
+plugins: anyio-4.14.2
+collecting ... collected 3 items
+
+test_live_academic.py::test_live_arxiv PASSED                            [ 33%]
+test_live_academic.py::test_live_semantic_scholar PASSED                 [ 66%]
+test_live_academic.py::test_full_paper_reader_pipeline FAILED            [100%]
+
+================================== FAILURES ===================================
+_______________________ test_full_paper_reader_pipeline _______________________
+
+    @pytest.mark.live
+    def test_full_paper_reader_pipeline():
+        async def _test():
+            bb = Blackboard(run_id="live_test_full", topic="speech diarization")
+            bus = MessageBus()
+            agent = PaperReaderAgent(blackboard=bb, bus=bus)
+    
+            print("[3/3] Testing full PaperReaderAgent pipeline (arXiv + S2, dedup)...")
+            papers = await agent.run(max_papers=5)
+            print(f"  PaperReaderAgent produced {len(papers)} papers on Blackboard")
+            for p in papers:
+                print(f"    - [{p.source_api}] {p.title}")
+            assert len(papers) > 0, "Expected at least 1 paper from live APIs"
+            print(f"  [OK] PaperReaderAgent pipeline ({len(papers)} papers)\n")
+>       return asyncio.run(_test())
+               ^^^^^^^^^^^^^^^^^^^^
+
+test_live_academic.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python314\Lib\asyncio\runners.py:205: in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+C:\Python314\Lib\asyncio\runners.py:128: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Python314\Lib\asyncio\base_events.py:719: in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    async def _test():
+        bb = Blackboard(run_id="live_test_full", topic="speech diarization")
+        bus = MessageBus()
+        agent = PaperReaderAgent(blackboard=bb, bus=bus)
+    
+        print("[3/3] Testing full PaperReaderAgent pipeline (arXiv + S2, dedup)...")
+>       papers = await agent.run(max_papers=5)
+                       ^^^^^^^^^
+E       AttributeError: 'PaperReaderAgent' object has no attribute 'run'
+
+test_live_academic.py:65: AttributeError
+---------------------------- Captured stdout call -----------------------------
+[3/3] Testing full PaperReaderAgent pipeline (arXiv + S2, dedup)...
+============================== warnings summary ===============================
+test_live_academic.py::test_live_arxiv
+  C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\_pytest\python.py:171: PytestReturnNotNoneWarning: Test functions should return None, but test_live_academic.py::test_live_arxiv returned <class 'list'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+test_live_academic.py::test_live_semantic_scholar
+  C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\_pytest\python.py:171: PytestReturnNotNoneWarning: Test functions should return None, but test_live_academic.py::test_live_semantic_scholar returned <class 'list'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED test_live_academic.py::test_full_paper_reader_pipeline - AttributeErro...
+=================== 1 failed, 2 passed, 2 warnings in 5.69s ===================

@@ -1,0 +1,15 @@
+22:08:54 [INFO] agents.coordinator_agent: Starting Research Run run_256ecd4a for topic: 'On-device real-time speech diarization'
+22:08:54 [WARNING] memory.store: VOYAGE_API_KEY not set; using deterministic mock embeddings for testing.
+22:08:54 [INFO] agents.researcher_agent: ResearcherAgent executing multi-engine search for: On-device real-time speech diarization Low power ARM64, under 200ms latency
+22:08:54 [INFO] agents.paper_reader_agent: PaperReaderAgent querying arXiv and Semantic Scholar for: On-device real-time speech diarization
+22:08:54 [WARNING] search.adapters.anthropic_adapter: ANTHROPIC_API_KEY not set; skipping AnthropicSearchAdapter.
+22:08:54 [WARNING] search.adapters.tavily_adapter: TAVILY_API_KEY not set; skipping Tavily search adapter.
+22:08:56 [INFO] httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=On-device+real-time+speech+diarization&limit=5&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+22:08:56 [WARNING] agents.paper_reader_agent: Semantic Scholar 429 rate-limit, retrying in 5s...
+22:09:01 [INFO] httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=On-device+real-time+speech+diarization&limit=5&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+22:09:01 [WARNING] agents.paper_reader_agent: Semantic Scholar 429 rate-limit, retrying in 10s...
+22:09:11 [INFO] httpx: HTTP Request: GET https://export.arxiv.org/api/query?search_query=all%3AOn-device%20real-time%20speech%20diarization&start=0&max_results=5 "HTTP/1.1 429 Too Many Requests"
+22:09:11 [WARNING] agents.paper_reader_agent: arXiv fetch failed: Client error '429 Too Many Requests' for url 'https://export.arxiv.org/api/query?search_query=all%3AOn-device%20real-time%20speech%20diarization&start=0&max_results=5'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+22:09:13 [INFO] httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=On-device+real-time+speech+diarization&limit=5&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+22:09:13 [WARNING] agents.paper_reader_agent: Semantic Scholar 429 rate-limit, retrying in 20s...

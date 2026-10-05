@@ -1,0 +1,2 @@
+2b687ef fix(paper_reader): fix arxiv User-Agent and headers to prevent 406 Not Acceptable
+9913cf0 Working state before full pipeline verification run

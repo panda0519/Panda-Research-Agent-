@@ -1,0 +1,11 @@
+--- URLLIB ---
+urllib http://export.arxiv.org/api/query?search_query=all:speech+diarization&start=0&max_results=3 -> Error: HTTP Error 406: Not Acceptable
+urllib https://export.arxiv.org/api/query?search_query=all:speech+diarization&start=0&max_results=3 -> Error: HTTP Error 406: Not Acceptable
+urllib http://api.arxiv.org/query?search_query=all:speech+diarization&start=0&max_results=3 -> Error: <urlopen error [Errno 11001] getaddrinfo failed>
+urllib https://api.arxiv.org/query?search_query=all:speech+diarization&start=0&max_results=3 -> Error: <urlopen error [Errno 11001] getaddrinfo failed>
+
+--- REQUESTS ---
+requests http://export.arxiv.org/api/query?search_query=all:speech+diarization&start=0&max_results=3 -> Status: 406, Len: 0
+requests https://export.arxiv.org/api/query?search_query=all:speech+diarization&start=0&max_results=3 -> Status: 406, Len: 0
+requests http://api.arxiv.org/query?search_query=all:speech+diarization&start=0&max_results=3 -> Error: HTTPConnectionPool(host='api.arxiv.org', port=80): Max retries exceeded with url: /query?search_query=all:speech+diarization&start=0&max_results=3 (Caused by NameResolutionError("HTTPConnection(host='api.arxiv.org', port=80): Failed to resolve 'api.arxiv.org' ([Errno 11001] getaddrinfo failed)"))
+requests https://api.arxiv.org/query?search_query=all:speech+diarization&start=0&max_results=3 -> Error: HTTPSConnectionPool(host='api.arxiv.org', port=443): Max retries exceeded with url: /query?search_query=all:speech+diarization&start=0&max_results=3 (Caused by NameResolutionError("HTTPSConnection(host='api.arxiv.org', port=443): Failed to resolve 'api.arxiv.org' ([Errno 11001] getaddrinfo failed)"))

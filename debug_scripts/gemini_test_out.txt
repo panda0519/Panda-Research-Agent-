@@ -1,0 +1,43 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\shubh\Desktop\research_agent
+configfile: pytest.ini
+plugins: anyio-4.14.2
+collecting ... collected 18 items / 17 deselected / 1 selected
+
+test_pipeline_health.py::TestSearchAdapterSmoke::test_gemini_adapter FAILED [100%]
+
+================================== FAILURES ===================================
+_________________ TestSearchAdapterSmoke.test_gemini_adapter __________________
+
+self = <test_pipeline_health.TestSearchAdapterSmoke object at 0x000001BFED6C09D0>
+
+    def test_gemini_adapter(self):
+        try:
+            from search.adapters.gemini_adapter import GeminiSearchAdapter as GeminiAdapter
+        except ImportError:
+            pytest.skip("GeminiSearchAdapter module could not be imported")
+        if not os.getenv("GEMINI_API_KEY"):
+            pytest.skip("GEMINI_API_KEY not set")
+        adapter = GeminiAdapter()
+        if not adapter._genai:
+            pytest.skip("google-generativeai package not installed")
+        results = asyncio.run(adapter.search(self.QUERY))
+>       assert len(results) > 0, "GeminiAdapter returned nothing for a trivial query"
+E       AssertionError: GeminiAdapter returned nothing for a trivial query
+E       assert 0 > 0
+E        +  where 0 = len([])
+
+test_pipeline_health.py:205: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  google_genai.models:models.py:6247 Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+============================== warnings summary ===============================
+test_pipeline_health.py::TestSearchAdapterSmoke::test_gemini_adapter
+  C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED test_pipeline_health.py::TestSearchAdapterSmoke::test_gemini_adapter
+================= 1 failed, 17 deselected, 1 warning in 7.53s =================

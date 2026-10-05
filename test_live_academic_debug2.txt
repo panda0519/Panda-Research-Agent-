@@ -1,0 +1,72 @@
+asyncio: Using proactor: IocpProactor
+httpcore.connection: connect_tcp.started host='export.arxiv.org' port=443 local_address=None timeout=30.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000029048BF4C20>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x00000290479E2DE0> server_hostname='export.arxiv.org' timeout=30.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000029048B27ED0>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'Unknown Error', [(b'Connection', b'keep-alive'), (b'Content-Length', b'14'), (b'via', b'1.1 google, 1.1 varnish, 1.1 varnish, 1.1 varnish'), (b'content-type', b'text/html'), (b'server', b'Google Frontend'), (b'accept-ranges', b'bytes'), (b'x-cloud-trace-context', b'a241a6b5e10822138595c97c4ae0b03e'), (b'Date', b'Sun, 13 Sep 2026 16:30:37 GMT'), (b'X-Served-By', b'cache-lga21962-LGA, cache-lga21962-LGA, cache-lga21941-LGA, cache-del-vibw2260030-DEL'), (b'X-Cache', b'MISS, MISS, MISS'), (b'X-Cache-Hits', b'0, 0, 0'), (b'X-Timer', b'S1789317037.631285,VS0,VE375'), (b'Strict-Transport-Security', b'max-age=300')])
+httpx: HTTP Request: GET https://export.arxiv.org/api/query?search_query=all%3Aspeech%20diarization&start=0&max_results=3 "HTTP/1.1 429 Unknown Error"
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+httpcore.connection: close.started
+httpcore.connection: close.complete
+agents.paper_reader_agent: arXiv fetch failed: Client error '429 Unknown Error' for url 'https://export.arxiv.org/api/query?search_query=all%3Aspeech%20diarization&start=0&max_results=3'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+httpcore.connection: connect_tcp.started host='api.semanticscholar.org' port=443 local_address=None timeout=30.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000029048C49E50>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x00000290479E3800> server_hostname='api.semanticscholar.org' timeout=30.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000029048BD8B00>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'', [(b'Content-Type', b'application/json'), (b'Content-Length', b'174'), (b'Connection', b'keep-alive'), (b'Date', b'Sun, 13 Sep 2026 16:30:37 GMT'), (b'x-amz-apigw-id', b'DpVjMGvqvHcETaA='), (b'x-amzn-RequestId', b'0039fe42-5c65-4de7-b0d8-5efc9ae48e7c'), (b'x-amzn-ErrorType', b'TooManyRequestsException'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 fe0838fa0d74e94e43255e4d397e4f90.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P5'), (b'X-Amz-Cf-Id', b'V1ae84TMh2WNVFM5KYefMeF1sUduSrDH27jgpj-PrslWsS_7mYdZZA==')])
+httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=speech+diarization&limit=3&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+agents.paper_reader_agent: Semantic Scholar 429 rate-limit, retrying in 5s...
+httpcore.connection: close.started
+httpcore.connection: close.complete
+httpcore.connection: connect_tcp.started host='api.semanticscholar.org' port=443 local_address=None timeout=30.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000029048BD90F0>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x00000290479E6C30> server_hostname='api.semanticscholar.org' timeout=30.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000029048BC8EF0>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'', [(b'Content-Type', b'application/json'), (b'Content-Length', b'174'), (b'Connection', b'keep-alive'), (b'Date', b'Sun, 13 Sep 2026 16:30:43 GMT'), (b'x-amz-apigw-id', b'DpVkHHNkvHcEKHg='), (b'x-amzn-RequestId', b'82cd960f-d5d2-43d6-8409-19027ce8cb90'), (b'x-amzn-ErrorType', b'TooManyRequestsException'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 f92376c430e5fabfcf4f6afc4fe6e9c8.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P5'), (b'X-Amz-Cf-Id', b'cIK00uDZGqHUZ4AZ3VAlL0din2fDUm-U8lKVPfqsT1DusBhWdy-_fg==')])
+httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=speech+diarization&limit=3&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+agents.paper_reader_agent: Semantic Scholar 429 rate-limit, retrying in 10s...
+httpcore.connection: close.started
+httpcore.connection: close.complete
+httpcore.connection: connect_tcp.started host='api.semanticscholar.org' port=443 local_address=None timeout=30.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000029048BDC160>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x00000290479E7C70> server_hostname='api.semanticscholar.org' timeout=30.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000029048BDCC00>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'', [(b'Content-Type', b'application/json'), (b'Content-Length', b'174'), (b'Connection', b'keep-alive'), (b'Date', b'Sun, 13 Sep 2026 16:30:54 GMT'), (b'x-amz-apigw-id', b'DpVl0GgUvHcEUjA='), (b'x-amzn-RequestId', b'0f9acdd8-6b51-48d9-9b30-acf0124dbae0'), (b'x-amzn-ErrorType', b'TooManyRequestsException'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 4f294f796e0a8d5fea0a2d176c7ce4c0.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'HYD57-P5'), (b'X-Amz-Cf-Id', b'wLh5702m76cXuiNEul3m_WCUIPABWBK7htS0E6gS0Zjc3RXoD6IunA==')])
+httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=speech+diarization&limit=3&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+agents.paper_reader_agent: Semantic Scholar 429 rate-limit, retrying in 20s...

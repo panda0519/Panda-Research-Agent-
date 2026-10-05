@@ -1,0 +1,41 @@
+* Host export.arxiv.org:443 was resolved.
+* IPv6: 64:ff9b::9765:d32a
+* IPv4: 151.101.211.42
+*   Trying [64:ff9b::9765:d32a]:443...
+*   Trying 151.101.211.42:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* ALPN: server accepted http/1.1
+* Established connection to export.arxiv.org (151.101.211.42 port 443) from 10.243.43.64 port 56751 
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0           00:01              0* using HTTP/1.x
+> GET /api/query?id_list=2101.09884 HTTP/1.1
+> Host: export.arxiv.org
+> User-Agent: curl/8.21.0
+> Accept: */*
+> Accept-Encoding: gzip, deflate
+> 
+* Request completely sent off
+* schannel: remote party requests renegotiation
+* schannel: renegotiating SSL/TLS connection
+* schannel: SSL/TLS connection renegotiated
+< HTTP/1.1 200 OK
+< Connection: keep-alive
+< Content-Length: 2713
+< server: Google Frontend
+< via: 1.1 google, 1.1 varnish, 1.1 varnish, 1.1 varnish
+< x-cloud-trace-context: 92bb0dff59ed3751bfc2fcd26a3f746c
+< content-type: application/atom+xml; charset=utf-8
+< Accept-Ranges: bytes
+< Age: 135
+< Date: Thu, 24 Sep 2026 06:10:49 GMT
+< X-Served-By: cache-lga-kjfk8660024-LGA, cache-lga-kjfk8660024-LGA, cache-lga-kjfk8660025-LGA, cache-bom-vanm7210055-BOM
+< X-Cache: MISS, MISS, HIT
+< X-Cache-Hits: 0, 0, 0
+< X-Timer: S1790230249.331756,VS0,VE1
+< Strict-Transport-Security: max-age=300
+< 
+{ [2713 bytes data]
+100   2713 100   2713   0      0   1393      0   00:01   00:01              0100   2713 100   2713   0      0   1392      0   00:01   00:01              0100   2713 100   2713   0      0   1392      0   00:01   00:01              0
+* Connection #0 to host export.arxiv.org:443 left intact

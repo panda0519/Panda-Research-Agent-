@@ -1,0 +1,63 @@
+asyncio: Using proactor: IocpProactor
+httpcore.connection: connect_tcp.started host='export.arxiv.org' port=443 local_address=None timeout=10.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000025291344D70>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x000002529012ADE0> server_hostname='export.arxiv.org' timeout=10.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000025291277110>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.failed exception=ReadTimeout(TimeoutError())
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+agents.paper_reader_agent: arXiv fetch failed: 
+httpcore.connection: connect_tcp.started host='api.semanticscholar.org' port=443 local_address=None timeout=10.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000025291385810>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x000002529012ADE0> server_hostname='api.semanticscholar.org' timeout=10.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000252913308A0>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'', [(b'Content-Type', b'application/json'), (b'Content-Length', b'174'), (b'Connection', b'keep-alive'), (b'Date', b'Sun, 13 Sep 2026 16:28:28 GMT'), (b'x-amz-apigw-id', b'DpVPEGCGPHcEa5g='), (b'x-amzn-RequestId', b'7cbec608-1ab8-458a-b415-7fb5e9c1f461'), (b'x-amzn-ErrorType', b'TooManyRequestsException'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 14eccf6b12d1705b369b8a517a8c1a56.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'BOM78-P8'), (b'X-Amz-Cf-Id', b'zSkPFvQhloBZeu4w0PvlRFf6J6aaWOOdvgLNAITr2PKx7XzKyonwpw==')])
+httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=speech+diarization&limit=3&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+httpcore.connection: close.started
+httpcore.connection: close.complete
+httpcore.connection: connect_tcp.started host='api.semanticscholar.org' port=443 local_address=None timeout=10.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000025291330C30>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x0000025290037C70> server_hostname='api.semanticscholar.org' timeout=10.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x0000025291314A70>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'', [(b'Content-Type', b'application/json'), (b'Content-Length', b'174'), (b'Connection', b'keep-alive'), (b'Date', b'Sun, 13 Sep 2026 16:28:30 GMT'), (b'x-amz-apigw-id', b'DpVPaGz3PHcEcCQ='), (b'x-amzn-RequestId', b'3db08b53-c643-46fe-a385-d991650bb956'), (b'x-amzn-ErrorType', b'TooManyRequestsException'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 def392ff4d2e2594c6b8affeeeadc0f4.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'BOM78-P8'), (b'X-Amz-Cf-Id', b'6A3awCwfL_i0KdUOU7RVlTD6_aM9KEgaxMMAUnfzb5v8wj8HC5fXeA==')])
+httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=speech+diarization&limit=3&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+httpcore.connection: close.started
+httpcore.connection: close.complete
+httpcore.connection: connect_tcp.started host='api.semanticscholar.org' port=443 local_address=None timeout=10.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000252912A6580>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x0000025290036C30> server_hostname='api.semanticscholar.org' timeout=10.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000252912A6360>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'', [(b'Content-Type', b'application/json'), (b'Content-Length', b'174'), (b'Connection', b'keep-alive'), (b'Date', b'Sun, 13 Sep 2026 16:28:33 GMT'), (b'x-amz-apigw-id', b'DpVP3GTgPHcEH7g='), (b'x-amzn-RequestId', b'1f7bdf88-b980-4ff2-9353-3e4bf6465fc1'), (b'x-amzn-ErrorType', b'TooManyRequestsException'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 def392ff4d2e2594c6b8affeeeadc0f4.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'BOM78-P8'), (b'X-Amz-Cf-Id', b'Dk32fA4fW1UIJqo1j__5JNAa4gulmnNorHKc1ukyWnErxr8PORGQNQ==')])
+httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=speech+diarization&limit=3&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete

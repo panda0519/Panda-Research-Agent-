@@ -1,0 +1,12 @@
+--- 1. urllib GET https ---
+urllib https: 200 9190
+--- 2. urllib GET http ---
+urllib http: 200 9190
+--- 3. httpx default https ---
+httpx https default status: 200
+--- 4. httpx with custom UA and Accept: */* https ---
+httpx https Chrome UA status: 200 len: 9190
+--- 5. httpx with http url ---
+httpx http Chrome UA status: 200 len: 9190
+--- 6. httpx with default client headers inspected ---
+Headers sent by httpx: {'host': 'export.arxiv.org', 'accept-encoding': 'gzip, deflate', 'connection': 'keep-alive', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36', 'accept': '*/*'}

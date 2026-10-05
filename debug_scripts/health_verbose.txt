@@ -1,0 +1,21 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\shubh\Desktop\research_agent
+configfile: pytest.ini
+plugins: anyio-4.14.2
+collecting ... collected 18 items / 7 deselected / 11 selected
+
+test_pipeline_health.py::TestRunHistoryHealth::test_db_has_at_least_one_run PASSED [  9%]
+test_pipeline_health.py::TestRunHistoryHealth::test_no_completed_run_is_fully_empty PASSED [ 18%]
+test_pipeline_health.py::TestRunHistoryHealth::test_completed_runs_record_phase_metadata PASSED [ 27%]
+test_pipeline_health.py::TestRunHistoryHealth::test_topic_length_is_sane PASSED [ 36%]
+test_pipeline_health.py::TestRunHistoryHealth::test_stored_counts_match_blackboard_list_lengths PASSED [ 45%]
+test_pipeline_health.py::TestEnvironmentConfig::test_dotenv_importable PASSED [ 54%]
+test_pipeline_health.py::TestEnvironmentConfig::test_load_dotenv_is_called_before_any_client PASSED [ 63%]
+test_pipeline_health.py::TestEnvironmentConfig::test_api_key_present[ANTHROPIC_API_KEY-True] PASSED [ 72%]
+test_pipeline_health.py::TestEnvironmentConfig::test_api_key_present[TAVILY_API_KEY-False] PASSED [ 81%]
+test_pipeline_health.py::TestEnvironmentConfig::test_api_key_present[GEMINI_API_KEY-False] PASSED [ 90%]
+test_pipeline_health.py::TestEnvironmentConfig::test_api_key_present[VOYAGE_API_KEY-False] PASSED [100%]
+
+====================== 11 passed, 7 deselected in 0.14s =======================

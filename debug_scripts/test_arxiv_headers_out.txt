@@ -1,0 +1,6 @@
+[standard browser] -> Status: 406, Length: 0
+[no accept header] -> Status: 406, Length: 0
+[python-requests style] -> Status: 406, Length: 0
+[curl style] -> Status: 406, Length: 0
+[arxiv recommended] -> Status: 406, Length: 0
+[explicit xml] -> Status: 406, Length: 0

@@ -1,0 +1,4 @@
+Please grade this research run based on the following standards:
+1. Multi-Engine Sourcing: The research must incorporate sources verified across multiple search engines and academic repositories.
+2. Concrete Engineering Gaps: Gaps must describe specific architectural bottlenecks rather than high-level generic issues.
+3. Realistic Tech Stack: Recommendations must consider trade-offs, latency, and operational complexity.

@@ -1,0 +1,66 @@
+# LLM & Search configuration per agent
+
+default_model: "claude-sonnet-5"
+cheap_model: "claude-3-5-haiku-20241022"
+embedding_model: "voyage-3-lite"
+
+agents:
+  CoordinatorAgent:
+    model: "claude-sonnet-5"
+    temperature: 0.2
+
+  ResearcherAgent:
+    model: "claude-sonnet-5"
+    temperature: 0.3
+    search_backends:
+      - "claude_web_search"
+      - "tavily"
+
+  PaperReaderAgent:
+    model: "claude-sonnet-5"
+    temperature: 0.2
+
+  SurveyorAgent:
+    model: "claude-sonnet-5"
+    temperature: 0.3
+    search_backends:
+      - "claude_web_search"
+      - "tavily"
+
+  GapAnalystAgent:
+    model: "claude-sonnet-5"
+    temperature: 0.4
+
+  IdeatorAgent:
+    model: "claude-sonnet-5"
+    temperature: 0.7
+
+  TechStackAgent:
+    model: "claude-sonnet-5"
+    temperature: 0.3
+
+  EvaluatorAgent:
+    model: "claude-sonnet-5"
+    temperature: 0.2
+
+  ReporterAgent:
+    model: "claude-sonnet-5"
+    temperature: 0.3
+
+  GradingAlignmentAgent:
+    model: "claude-sonnet-5"
+    temperature: 0.2
+
+  MemoryAgent:
+    embedding_model: "voyage-3-lite"
+
+verification:
+  layer1:
+    min_trust_score: 0.5
+    timeout_sec: 5.0
+  layer2:
+    model: "claude-3-5-haiku-20241022"
+    temperature: 0.0
+  layer3:
+    model: "claude-sonnet-5"
+    temperature: 0.1

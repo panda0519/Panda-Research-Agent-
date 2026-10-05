@@ -1,0 +1,6 @@
+Query [search_query=all:"speech diarization"] -> Error: URL can't contain control characters. '/api/query?search_query=all:"speech diarization"&max_results=2' (found at least ' ')
+Query [search_query=all:speech+AND+all:diarization] -> Error: HTTP Error 406: Not Acceptable
+Query [search_query=ti:"speech diarization"] -> Error: URL can't contain control characters. '/api/query?search_query=ti:"speech diarization"&max_results=2' (found at least ' ')
+Query [search_query=speech+diarization] -> Error: HTTP Error 406: Not Acceptable
+Query [search_query=all:electron] -> Error: HTTP Error 406: Not Acceptable
+Query [id_list=2101.09884] -> Error: HTTP Error 406: Not Acceptable

@@ -1,0 +1,34 @@
+# Verification Pipeline Configuration
+
+layer1:
+  enabled: true
+  timeout_seconds: 4.0
+  min_trust_score: 0.5
+  disallowed_domains:
+    - "contentfarm.example"
+    - "clickbait.invalid"
+    - "spammy-seo-site.net"
+  high_trust_domains:
+    - "arxiv.org"
+    - "github.com"
+    - "ieee.org"
+    - "acm.org"
+    - "semanticscholar.org"
+    - "nature.com"
+    - "science.org"
+    - "mit.edu"
+    - "stanford.edu"
+
+layer2:
+  enabled: true
+  model: "claude-3-5-haiku-20241022"
+  temperature: 0.0
+  max_claims_per_agent: 10
+  prioritize_single_engine: true
+
+layer3:
+  enabled: true
+  model: "claude-sonnet-5"
+  temperature: 0.1
+  flag_orphan_citations: true
+  policy_on_needs_human: "flag_inline"  # "flag_inline" or "block"

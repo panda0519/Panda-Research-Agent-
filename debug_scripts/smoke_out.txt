@@ -1,0 +1,10 @@
+Direct use of automatic function calling (AFC) in Models.generate_content is not recommended. Instead, we recommend to use AFC in Chat.send_message. Similarly, direct use of AFC in Models.generate_content_stream is not recommended. Instead, we recommend to use AFC in Chat.send_message_stream.
+--- Models supporting generateContent ---
+Flash models found: ['models/gemini-2.5-flash', 'models/gemini-2.5-flash-preview-tts', 'models/gemini-flash-latest', 'models/gemini-flash-lite-latest', 'models/gemini-2.5-flash-lite', 'models/gemini-2.5-flash-image', 'models/gemini-3-flash-preview', 'models/gemini-3.1-flash-lite-preview', 'models/gemini-3.1-flash-lite', 'models/gemini-3.1-flash-image-preview', 'models/gemini-3.1-flash-image', 'models/gemini-3.1-flash-lite-image', 'models/gemini-3.5-flash', 'models/gemini-3.5-flash-lite', 'models/gemini-omni-flash-preview', 'models/gemini-omni-1.1-flash', 'models/gemini-3.6-flash', 'models/gemini-3.7-flash', 'models/gemini-3.8-flash', 'models/gemini-3.1-flash-tts-preview']
+Testing model: models/gemini-2.5-flash...
+FAILED models/gemini-2.5-flash: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.', 'status': 'NOT_FOUND'}}
+Testing model: models/gemini-2.5-flash-preview-tts...
+FAILED models/gemini-2.5-flash-preview-tts: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'The requested combination of response modalities (TEXT) is not supported by the model. models/gemini-2.5-flash-preview-tts accepts the following combination of response modalities:\n* AUDIO\n', 'status': 'INVALID_ARGUMENT'}}
+Testing model: models/gemini-flash-latest...
+RAW RESPONSE TEXT: 'OK'
+SUCCESS with model: models/gemini-flash-latest

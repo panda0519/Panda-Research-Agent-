@@ -1,0 +1,27 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\shubh\Desktop\research_agent
+configfile: pytest.ini
+plugins: anyio-4.14.2
+collecting ... collected 17 items
+
+tests/test_end_to_end.py::test_full_pipeline_mock_execution PASSED       [  5%]
+tests/test_live_trace.py::test_server_broadcasts_emitted_events PASSED   [ 11%]
+tests/test_live_trace.py::test_events_dropped_silently_before_server_starts PASSED [ 17%]
+tests/test_memory_store.py::test_vector_memory_store_cosine_search PASSED [ 23%]
+tests/test_memory_store.py::test_memory_agent_lifecycle PASSED           [ 29%]
+tests/test_paper_reader.py::test_arxiv_atom_parsing PASSED               [ 35%]
+tests/test_paper_reader.py::test_semantic_scholar_json_parsing PASSED    [ 41%]
+tests/test_paper_reader.py::test_paper_reader_blackboard_integration PASSED [ 47%]
+tests/test_rubric_parser.py::test_parse_yaml_weighted_rubric PASSED      [ 52%]
+tests/test_rubric_parser.py::test_parse_markdown_checklist_rubric PASSED [ 58%]
+tests/test_search_orchestrator.py::test_url_normalization PASSED         [ 64%]
+tests/test_search_orchestrator.py::test_domain_extraction PASSED         [ 70%]
+tests/test_search_orchestrator.py::test_orchestrator_merges_and_deduplicates PASSED [ 76%]
+tests/test_search_orchestrator.py::test_orchestrator_fault_tolerance PASSED [ 82%]
+tests/test_verification_pipeline.py::test_layer1_source_verification PASSED [ 88%]
+tests/test_verification_pipeline.py::test_verification_badge_formatting PASSED [ 94%]
+tests/test_verification_pipeline.py::test_layer3_orphan_citation_detection PASSED [100%]
+
+============================= 17 passed in 1.06s ==============================

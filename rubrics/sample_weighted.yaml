@@ -1,0 +1,13 @@
+criteria:
+  - criterion: "Academic Literature Depth"
+    weight: 0.25
+    description: "Cites peer-reviewed papers from arXiv or Semantic Scholar with actionable takeaways."
+  - criterion: "Competitive Landscape & Gaps"
+    weight: 0.25
+    description: "Evaluates existing commercial/open-source tools and isolates critical architectural gaps."
+  - criterion: "Novelty & System Architecture"
+    weight: 0.30
+    description: "Proposes technically differentiated features with concrete data flows and layer-by-layer stack."
+  - criterion: "Factual Verification & Feasibility"
+    weight: 0.20
+    description: "Undergoes 3-layer claim verification and realistic risk/complexity evaluation."

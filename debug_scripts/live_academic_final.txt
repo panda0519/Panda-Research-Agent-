@@ -1,0 +1,31 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\shubh\Desktop\research_agent
+configfile: pytest.ini
+plugins: anyio-4.14.2
+collecting ... collected 3 items
+
+test_live_academic.py::test_live_arxiv PASSED                            [ 33%]
+test_live_academic.py::test_live_semantic_scholar PASSED                 [ 66%]
+test_live_academic.py::test_full_paper_reader_pipeline PASSED            [100%]
+
+============================== warnings summary ===============================
+test_live_academic.py::test_live_arxiv
+  C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\_pytest\python.py:171: PytestReturnNotNoneWarning: Test functions should return None, but test_live_academic.py::test_live_arxiv returned <class 'list'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+test_live_academic.py::test_live_semantic_scholar
+  C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\_pytest\python.py:171: PytestReturnNotNoneWarning: Test functions should return None, but test_live_academic.py::test_live_semantic_scholar returned <class 'list'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+test_live_academic.py::test_full_paper_reader_pipeline
+  C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+    VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 3 passed, 3 warnings in 22.09s ========================

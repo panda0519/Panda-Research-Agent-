@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Live trace — Panda Research Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --board: #1e2b23;
+    --board-edge: #141d18;
+    --chalk: #edece2;
+    --chalk-dim: rgba(237, 236, 226, 0.58);
+    --chalk-faint: rgba(237, 236, 226, 0.32);
+    --chalk-line: rgba(237, 236, 226, 0.14);
+    --running: #e7c368;
+    --done: #90b99a;
+    --error: #c3695a;
+    --pending: rgba(237, 236, 226, 0.28);
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 1px 1px, rgba(237,236,226,0.05) 1px, transparent 0) 0 0 / 5px 5px,
+      radial-gradient(ellipse at 50% -10%, var(--board) 0%, var(--board-edge) 78%);
+    color: var(--chalk);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 28px 64px;
+  }
+
+  header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 22px;
+    border-bottom: 1px dashed var(--chalk-line);
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+    letter-spacing: 0.01em;
+  }
+
+  .run-meta {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--chalk-dim);
+    max-width: 60ch;
+  }
+
+  .run-meta .topic { color: var(--chalk); }
+
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--chalk-dim);
+    white-space: nowrap;
+    padding-top: 4px;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pending);
+  }
+  .status-dot.connected { background: var(--done); }
+  .status-dot.connecting { background: var(--running); }
+  .status-dot.disconnected { background: var(--error); }
+
+  main {
+    display: grid;
+    grid-template-columns: minmax(220px, 300px) 1fr;
+    gap: 32px;
+  }
+
+  @media (max-width: 720px) {
+    main { grid-template-columns: 1fr; }
+  }
+
+  section h2 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 16px;
+  }
+
+  /* ---- agent timeline ---- */
+
+  .timeline {
+    position: relative;
+  }
+
+  .timeline-list {
+    position: relative;
+    padding-left: 22px;
+  }
+
+  .timeline-list::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--chalk-line) 0 4px,
+      transparent 4px 8px
+    );
+  }
+
+  .step {
+    position: relative;
+    padding-bottom: 22px;
+  }
+
+  .step:last-child { padding-bottom: 0; }
+
+  .step-dot {
+    position: absolute;
+    left: -22px;
+    top: 3px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--pending);
+    box-shadow: 0 0 0 3px var(--board);
+  }
+
+  .step--running .step-dot {
+    background: var(--running);
+    animation: pulse 1.7s ease-in-out infinite;
+  }
+  .step--done .step-dot { background: var(--done); }
+  .step--error .step-dot { background: var(--error); }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px var(--board), 0 0 0 3px var(--board); }
+    50% { box-shadow: 0 0 0 3px var(--board), 0 0 0 8px rgba(231, 195, 104, 0); }
+  }
+
+  .step-name {
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .step-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--chalk-dim);
+    margin-top: 2px;
+  }
+  .step--error .step-meta { color: var(--error); }
+
+  .step-time {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--chalk-faint);
+    margin-top: 2px;
+  }
+
+  .empty-note {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--chalk-dim);
+    line-height: 1.6;
+  }
+
+  .empty-note code {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.18);
+    border: 1px solid var(--chalk-line);
+    border-radius: 3px;
+    color: var(--chalk);
+    font-size: 0.78rem;
+    overflow-x: auto;
+  }
+
+  /* ---- blackboard stats ---- */
+
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-bottom: 32px;
+    border: 1px solid var(--chalk-line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .stat {
+    flex: 1 1 120px;
+    padding: 14px 18px;
+    border-right: 1px solid var(--chalk-line);
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-value {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .stat-label {
+    font-size: 0.76rem;
+    color: var(--chalk-dim);
+    margin-top: 2px;
+  }
+
+  /* ---- message feed ---- */
+
+  .feed-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .feed-header h2 { margin: 0; }
+
+  .clear-btn {
+    background: none;
+    border: 1px solid var(--chalk-line);
+    color: var(--chalk-dim);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .clear-btn:hover { color: var(--chalk); border-color: var(--chalk-faint); }
+  .clear-btn:focus-visible, a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--running);
+    outline-offset: 2px;
+  }
+
+  .feed {
+    max-height: 460px;
+    overflow-y: auto;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.7;
+  }
+
+  .feed::-webkit-scrollbar { width: 8px; }
+  .feed::-webkit-scrollbar-thumb { background: var(--chalk-line); border-radius: 4px; }
+
+  .msg {
+    padding: 7px 0;
+    border-bottom: 1px solid var(--chalk-line);
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 10px;
+  }
+  .msg:last-child { border-bottom: none; }
+
+  .msg-time { color: var(--chalk-faint); }
+
+  .msg-route { color: var(--chalk); }
+  .msg-route .arrow { color: var(--chalk-faint); padding: 0 4px; }
+  .msg-type { color: var(--running); margin-left: 6px; }
+  .msg-preview { color: var(--chalk-dim); display: block; margin-top: 1px; }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(-3px); }
+    to { opacity: 1; transform: none; }
+  }
+  .msg { animation: msgIn 0.22s ease-out; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .step--running .step-dot { animation: none; }
+    .msg { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Live trace</h1>
+        <div class="run-meta" id="run-meta">No run in progress</div>
+      </div>
+      <div class="status">
+        <span class="status-dot connecting" id="status-dot"></span>
+        <span id="status-text">connecting…</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="timeline">
+        <h2>Agents</h2>
+        <div id="timeline-empty" class="empty-note">
+          No run yet. Start one from the project folder:
+          <code>python main.py --topic "..." --context "..." --live-trace</code>
+        </div>
+        <div class="timeline-list" id="timeline-list"></div>
+      </section>
+
+      <section>
+        <h2>Blackboard</h2>
+        <div class="stats" id="stats"></div>
+
+        <div class="feed-header">
+          <h2>Message bus</h2>
+          <button class="clear-btn" id="clear-btn">Clear log</button>
+        </div>
+        <div class="feed" id="feed">
+          <div class="empty-note" id="feed-empty">Nothing has crossed the message bus yet.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+<script>
+(() => {
+  const WS_URL = "ws://localhost:8765";
+  const STAT_FIELDS = [
+    ["sources", "sources"],
+    ["existing_solutions", "existing solutions"],
+    ["gaps", "gaps"],
+    ["proposed_features", "proposed features"],
+    ["evaluations", "evaluations"],
+  ];
+
+  const agents = new Map(); // key -> {name, phase, status, startedAt, summary, message}
+  const messages = []; // newest first, capped
+  const blackboard = {};
+  const MAX_MESSAGES = 200;
+
+  const el = (id) => document.getElementById(id);
+  const escapeHtml = (s) =>
+    String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  function setStatus(state) {
+    const dot = el("status-dot");
+    const text = el("status-text");
+    dot.className = "status-dot " + state;
+    text.textContent = state === "connected" ? "connected" : state === "connecting" ? "connecting…" : "waiting for a run — start one with --live-trace";
+  }
+
+  function renderRunMeta(run) {
+    const target = el("run-meta");
+    if (!run) {
+      target.textContent = "No run in progress";
+      return;
+    }
+    target.innerHTML =
+      `<span class="topic">${escapeHtml(run.topic || "(untitled)")}</span>` +
+      (run.run_id ? ` — run ${escapeHtml(run.run_id)}` : "") +
+      (run.ended ? " · finished" : " · in progress");
+  }
+
+  function renderTimeline() {
+    el("timeline-empty").style.display = agents.size ? "none" : "block";
+    const list = el("timeline-list");
+    list.innerHTML = "";
+    for (const a of agents.values()) {
+      const step = document.createElement("div");
+      step.className = `step step--${a.status}`;
+      const meta =
+        a.status === "error" ? (a.message || "error")
+        : a.status === "running" ? "running…"
+        : a.status === "done" ? (a.summary || "done")
+        : "waiting";
+      step.innerHTML = `
+        <span class="step-dot"></span>
+        <div class="step-name">${escapeHtml(a.name)}</div>
+        <div class="step-meta">${escapeHtml(meta)}</div>
+        ${a.durationSec != null ? `<div class="step-time">${a.durationSec.toFixed(1)}s</div>` : ""}
+      `;
+      list.appendChild(step);
+    }
+  }
+
+  function renderStats() {
+    const container = el("stats");
+    container.innerHTML = "";
+    for (const [field, label] of STAT_FIELDS) {
+      const value = blackboard[field];
+      const div = document.createElement("div");
+      div.className = "stat";
+      div.innerHTML = `<div class="stat-value">${value != null ? value : "–"}</div><div class="stat-label">${label}</div>`;
+      container.appendChild(div);
+    }
+  }
+
+  function renderFeed() {
+    el("feed-empty").style.display = messages.length ? "none" : "block";
+    const container = el("feed");
+    const rows = messages
+      .map((m) => {
+        const time = new Date(m.ts).toLocaleTimeString();
+        return `
+          <div class="msg">
+            <div class="msg-time">${time}</div>
+            <div>
+              <span class="msg-route">${escapeHtml(m.sender)}<span class="arrow">→</span>${escapeHtml(m.recipient)}</span>
+              <span class="msg-type">${escapeHtml(m.message_type)}</span>
+              ${m.preview ? `<span class="msg-preview">${escapeHtml(m.preview)}</span>` : ""}
+            </div>
+          </div>`;
+      })
+      .join("");
+    container.innerHTML = rows || container.innerHTML; // keep empty-note node if no messages yet
+    if (messages.length) container.innerHTML = rows;
+  }
+
+  function handleEvent(evt) {
+    switch (evt.type) {
+      case "run_start": {
+        agents.clear();
+        messages.length = 0;
+        for (const k of Object.keys(blackboard)) delete blackboard[k];
+        renderRunMeta({ run_id: evt.run_id, topic: evt.topic, ended: false });
+        renderTimeline();
+        renderStats();
+        renderFeed();
+        break;
+      }
+      case "run_end": {
+        renderRunMeta({ run_id: evt.run_id, topic: (agents.currentTopic || ""), ended: true });
+        break;
+      }
+      case "agent_start": {
+        const key = `${evt.agent}:${evt.phase ?? ""}`;
+        agents.set(key, { name: evt.agent, phase: evt.phase, status: "running", startedAt: Date.parse(evt.ts) });
+        renderTimeline();
+        break;
+      }
+      case "agent_end": {
+        const key = `${evt.agent}:${evt.phase ?? ""}`;
+        const existing = agents.get(key) || { name: evt.agent, phase: evt.phase };
+        const endedAt = Date.parse(evt.ts);
+        existing.status = "done";
+        existing.summary = evt.summary;
+        if (existing.startedAt) existing.durationSec = (endedAt - existing.startedAt) / 1000;
+        agents.set(key, existing);
+        renderTimeline();
+        break;
+      }
+      case "agent_error": {
+        const key = `${evt.agent}:${evt.phase ?? ""}`;
+        const existing = agents.get(key) || { name: evt.agent };
+        existing.status = "error";
+        existing.message = evt.message;
+        agents.set(key, existing);
+        renderTimeline();
+        break;
+      }
+      case "message": {
+        messages.unshift(evt);
+        if (messages.length > MAX_MESSAGES) messages.length = MAX_MESSAGES;
+        renderFeed();
+        break;
+      }
+      case "blackboard_update": {
+        if (evt.count != null) blackboard[evt.field] = evt.count;
+        renderStats();
+        break;
+      }
+    }
+  }
+
+  function connect() {
+    setStatus("connecting");
+    const ws = new WebSocket(WS_URL);
+
+    ws.onopen = () => setStatus("connected");
+    ws.onclose = () => {
+      setStatus("disconnected");
+      setTimeout(connect, 2000);
+    };
+    ws.onerror = () => ws.close();
+    ws.onmessage = (event) => {
+      try {
+        handleEvent(JSON.parse(event.data));
+      } catch (e) {
+        console.error("Bad trace event", e, event.data);
+      }
+    };
+  }
+
+  el("clear-btn").addEventListener("click", () => {
+    messages.length = 0;
+    renderFeed();
+  });
+
+  renderStats();
+  connect();
+})();
+</script>
+</body>
+</html>

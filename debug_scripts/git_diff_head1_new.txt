@@ -1,0 +1,17 @@
+diff --git a/agents/paper_reader_agent.py b/agents/paper_reader_agent.py
+index 6a4d566..94fc3c0 100644
+--- a/agents/paper_reader_agent.py
++++ b/agents/paper_reader_agent.py
+@@ -76,9 +76,11 @@ class PaperReaderAgent(BaseAgent):
+         url = f"{ARXIV_API_URL}?search_query=all:{encoded_q}&start=0&max_results={limit}"
+         headers = {
+             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
++            "Accept-Encoding": "gzip, deflate",
++            "Accept": "*/*",
+         }
+         try:
+-            async with httpx.AsyncClient(headers=headers, timeout=30.0, follow_redirects=True) as client:
++            async with httpx.AsyncClient(http1=True, http2=False, headers=headers, timeout=30.0, follow_redirects=True) as client:
+                 resp = await client.get(url)
+                 resp.raise_for_status()
+                 return self.parse_arxiv_atom(resp.text)

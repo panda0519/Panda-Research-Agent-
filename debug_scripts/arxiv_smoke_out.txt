@@ -1,0 +1,38 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- C:\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\shubh\Desktop\research_agent
+configfile: pytest.ini
+plugins: anyio-4.14.2
+collecting ... collected 18 items / 17 deselected / 1 selected
+
+test_pipeline_health.py::TestPaperReaderSmoke::test_arxiv_lookup_returns_papers FAILED [100%]
+
+================================== FAILURES ===================================
+____________ TestPaperReaderSmoke.test_arxiv_lookup_returns_papers ____________
+
+self = <test_pipeline_health.TestPaperReaderSmoke object at 0x000001E7F5CC4E10>
+
+    def test_arxiv_lookup_returns_papers(self):
+        try:
+            from blackboard import Blackboard
+            from message import MessageBus
+            from agents.paper_reader_agent import PaperReaderAgent
+        except ImportError:
+            pytest.skip("PaperReaderAgent module could not be imported")
+        bb = Blackboard(run_id="smoke_arxiv", topic="transformer attention mechanism")
+        bus = MessageBus()
+        agent = PaperReaderAgent(blackboard=bb, bus=bus)
+        notes = asyncio.run(agent.fetch_arxiv("transformer attention mechanism", limit=3))
+>       assert len(notes) > 0, "PaperReaderAgent found zero papers for an extremely common ML topic"
+E       AssertionError: PaperReaderAgent found zero papers for an extremely common ML topic
+E       assert 0 > 0
+E        +  where 0 = len([])
+
+test_pipeline_health.py:234: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  agents.paper_reader_agent:paper_reader_agent.py:86 arXiv fetch failed: Client error '406 Not Acceptable' for url 'https://export.arxiv.org/api/query?search_query=all:transformer+attention+mechanism&start=0&max_results=3'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/406
+=========================== short test summary info ===========================
+FAILED test_pipeline_health.py::TestPaperReaderSmoke::test_arxiv_lookup_returns_papers
+====================== 1 failed, 17 deselected in 0.84s =======================

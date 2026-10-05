@@ -1,0 +1,172 @@
+asyncio: Using proactor: IocpProactor
+httpcore.connection: connect_tcp.started host='export.arxiv.org' port=443 local_address=None timeout=30.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000281441734D0>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x0000028142AE2210> server_hostname='export.arxiv.org' timeout=30.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000281441CD590>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Connection', b'keep-alive'), (b'Content-Length', b'8974'), (b'via', b'1.1 google, 1.1 varnish, 1.1 varnish, 1.1 varnish'), (b'x-cloud-trace-context', b'5eb753f0db5a0c71b37799e9a11c5e32'), (b'server', b'Google Frontend'), (b'content-type', b'application/atom+xml; charset=utf-8'), (b'Accept-Ranges', b'bytes'), (b'Age', b'171'), (b'Date', b'Thu, 24 Sep 2026 06:15:13 GMT'), (b'X-Served-By', b'cache-lga-kjfk8660037-LGA, cache-lga-kjfk8660037-LGA, cache-lga-kjfk8660056-LGA, cache-bom-vanm7210065-BOM'), (b'X-Cache', b'MISS, MISS, HIT'), (b'X-Cache-Hits', b'0, 0, 0'), (b'X-Timer', b'S1790230513.331870,VS0,VE1'), (b'Strict-Transport-Security', b'max-age=300')])
+httpx: HTTP Request: GET https://export.arxiv.org/api/query?search_query=all:speech+diarization&start=0&max_results=3 "HTTP/1.1 200 OK"
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+httpcore.connection: close.started
+httpcore.connection: close.complete
+asyncio: Using proactor: IocpProactor
+httpcore.connection: connect_tcp.started host='api.semanticscholar.org' port=443 local_address=None timeout=10.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000281441CDF90>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x0000028143CA3140> server_hostname='api.semanticscholar.org' timeout=10.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000002814423D220>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'', [(b'Content-Type', b'application/json'), (b'Content-Length', b'174'), (b'Connection', b'keep-alive'), (b'Date', b'Thu, 24 Sep 2026 06:15:18 GMT'), (b'x-amz-apigw-id', b'EMLuqFyRPHcEsUw='), (b'x-amzn-RequestId', b'7777bf33-346f-44f6-87ac-246d3f726157'), (b'x-amzn-ErrorType', b'TooManyRequestsException'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 bead21c51f5d847c5e65c5a3e2f54432.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'PNQ50-P1'), (b'X-Amz-Cf-Id', b'LJoe5_bl3peGezx1B0YPy9H3ZbjaUXjWz1bdAWDt-g3nYxTPov4PeA==')])
+httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=speech+diarization&limit=3&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+agents.paper_reader_agent: Semantic Scholar 429 rate-limit, retrying in 1s...
+httpcore.connection: close.started
+httpcore.connection: close.complete
+httpcore.connection: connect_tcp.started host='api.semanticscholar.org' port=443 local_address=None timeout=10.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000002814423D810>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x0000028142C23930> server_hostname='api.semanticscholar.org' timeout=10.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000281442128D0>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'', [(b'Content-Type', b'application/json'), (b'Content-Length', b'174'), (b'Connection', b'keep-alive'), (b'Date', b'Thu, 24 Sep 2026 06:15:22 GMT'), (b'x-amz-apigw-id', b'EMLvMFSJPHcEZqw='), (b'x-amzn-RequestId', b'a542b1c2-6c67-4b54-b91c-b1bb23deee46'), (b'x-amzn-ErrorType', b'TooManyRequestsException'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 2983ccb5d17041c7812152325415cbd6.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'PNQ50-P1'), (b'X-Amz-Cf-Id', b'Di4NlTa-JX4xiU3xjn2xyqEk1ZP1Brz9U_K-HinfE_gWN-2t35tRSw==')])
+httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=speech+diarization&limit=3&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+agents.paper_reader_agent: Semantic Scholar 429 rate-limit, retrying in 2s...
+httpcore.connection: close.started
+httpcore.connection: close.complete
+asyncio: Using proactor: IocpProactor
+agents.paper_reader_agent: PaperReaderAgent querying arXiv and Semantic Scholar for: speech diarization
+httpcore.connection: connect_tcp.started host='export.arxiv.org' port=443 local_address=None timeout=30.0 socket_options=None
+httpcore.connection: connect_tcp.started host='api.semanticscholar.org' port=443 local_address=None timeout=10.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000002814422EF10>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x000002814421D570> server_hostname='export.arxiv.org' timeout=30.0
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000002814422F020>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x0000028144262A80> server_hostname='api.semanticscholar.org' timeout=10.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000281442A1450>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000281442A1250>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Connection', b'keep-alive'), (b'Content-Length', b'14551'), (b'via', b'1.1 google, 1.1 varnish, 1.1 varnish, 1.1 varnish'), (b'x-cloud-trace-context', b'477544581862d9bc00d7bb2e2768ef2c'), (b'server', b'Google Frontend'), (b'content-type', b'application/atom+xml; charset=utf-8'), (b'Accept-Ranges', b'bytes'), (b'Age', b'0'), (b'Date', b'Thu, 24 Sep 2026 06:15:27 GMT'), (b'X-Served-By', b'cache-lga-kjfk8660035-LGA, cache-lga-kjfk8660035-LGA, cache-lga-kjfk8660035-LGA, cache-bom-vanm7210072-BOM'), (b'X-Cache', b'MISS, MISS, MISS'), (b'X-Cache-Hits', b'0, 0, 0'), (b'X-Timer', b'S1790230527.248277,VS0,VE414'), (b'Strict-Transport-Security', b'max-age=300')])
+httpx: HTTP Request: GET https://export.arxiv.org/api/query?search_query=all:speech+diarization&start=0&max_results=5 "HTTP/1.1 200 OK"
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+httpcore.connection: close.started
+httpcore.connection: close.complete
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'', [(b'Content-Type', b'application/json'), (b'Content-Length', b'174'), (b'Connection', b'keep-alive'), (b'Date', b'Thu, 24 Sep 2026 06:15:27 GMT'), (b'x-amz-apigw-id', b'EMLwDFBdPHcEWjw='), (b'x-amzn-RequestId', b'ba75a0f5-bcd9-4675-87eb-f98272a4c9ed'), (b'x-amzn-ErrorType', b'TooManyRequestsException'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 bead21c51f5d847c5e65c5a3e2f54432.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'PNQ50-P1'), (b'X-Amz-Cf-Id', b'qlENi4GUEb1LdnSjAiSjDN2RPozprUP-bKlJPMCwzo5hPbbLVBuS_w==')])
+httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=speech+diarization&limit=5&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+agents.paper_reader_agent: Semantic Scholar 429 rate-limit, retrying in 1s...
+httpcore.connection: close.started
+httpcore.connection: close.complete
+httpcore.connection: connect_tcp.started host='api.semanticscholar.org' port=443 local_address=None timeout=10.0 socket_options=None
+httpcore.connection: connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000281442AB200>
+httpcore.connection: start_tls.started ssl_context=<ssl.SSLContext object at 0x0000028144262C10> server_hostname='api.semanticscholar.org' timeout=10.0
+httpcore.connection: start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x00000281442AAC60>
+httpcore.http11: send_request_headers.started request=<Request [b'GET']>
+httpcore.http11: send_request_headers.complete
+httpcore.http11: send_request_body.started request=<Request [b'GET']>
+httpcore.http11: send_request_body.complete
+httpcore.http11: receive_response_headers.started request=<Request [b'GET']>
+httpcore.http11: receive_response_headers.complete return_value=(b'HTTP/1.1', 429, b'', [(b'Content-Type', b'application/json'), (b'Content-Length', b'174'), (b'Connection', b'keep-alive'), (b'Date', b'Thu, 24 Sep 2026 06:15:40 GMT'), (b'x-amz-apigw-id', b'EMLyBEOaPHcEgXA='), (b'x-amzn-RequestId', b'1f619fa3-4f29-4fc3-8dca-105791ce8c1e'), (b'x-amzn-ErrorType', b'TooManyRequestsException'), (b'X-Cache', b'Error from cloudfront'), (b'Via', b'1.1 2983ccb5d17041c7812152325415cbd6.cloudfront.net (CloudFront)'), (b'X-Amz-Cf-Pop', b'PNQ50-P1'), (b'X-Amz-Cf-Id', b'Ca3w1Gc66G442SCzWKajuStjeTOyMCrumKnmjtSk2JIKnQNMeUBTZA==')])
+httpx: HTTP Request: GET https://api.semanticscholar.org/graph/v1/paper/search?query=speech+diarization&limit=5&fields=title%2Cauthors%2Cyear%2Cabstract%2Curl%2CcitationCount%2Cvenue "HTTP/1.1 429 "
+httpcore.http11: receive_response_body.started request=<Request [b'GET']>
+httpcore.http11: receive_response_body.complete
+httpcore.http11: response_closed.started
+httpcore.http11: response_closed.complete
+agents.paper_reader_agent: Semantic Scholar 429 rate-limit, retrying in 2s...
+httpcore.connection: close.started
+httpcore.connection: close.complete
+asyncio: Task exception was never retrieved
+future: <Task finished name='Task-10' coro=<BaseApiClient.aclose() done, defined at C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\_api_client.py:2504> exception=AttributeError("'BaseApiClient' object has no attribute '_async_httpx_client'")>
+Traceback (most recent call last):
+  File "C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\_api_client.py", line 2509, in aclose
+    await self._async_httpx_client.aclose()  # type: ignore[union-attr]
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BaseApiClient' object has no attribute '_async_httpx_client'
+asyncio: Task exception was never retrieved
+future: <Task finished name='Task-11' coro=<BaseApiClient.aclose() done, defined at C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\_api_client.py:2504> exception=AttributeError("'BaseApiClient' object has no attribute '_async_httpx_client'")>
+Traceback (most recent call last):
+  File "C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\_api_client.py", line 2509, in aclose
+    await self._async_httpx_client.aclose()  # type: ignore[union-attr]
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BaseApiClient' object has no attribute '_async_httpx_client'
+asyncio: Task exception was never retrieved
+future: <Task finished name='Task-12' coro=<BaseApiClient.aclose() done, defined at C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\_api_client.py:2504> exception=AttributeError("'BaseApiClient' object has no attribute '_async_httpx_client'")>
+Traceback (most recent call last):
+  File "C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\_api_client.py", line 2509, in aclose
+    await self._async_httpx_client.aclose()  # type: ignore[union-attr]
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BaseApiClient' object has no attribute '_async_httpx_client'
+asyncio: Task exception was never retrieved
+future: <Task finished name='Task-13' coro=<BaseApiClient.aclose() done, defined at C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\_api_client.py:2504> exception=AttributeError("'BaseApiClient' object has no attribute '_async_httpx_client'")>
+Traceback (most recent call last):
+  File "C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\_api_client.py", line 2509, in aclose
+    await self._async_httpx_client.aclose()  # type: ignore[union-attr]
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BaseApiClient' object has no attribute '_async_httpx_client'
+asyncio: Task exception was never retrieved
+future: <Task finished name='Task-14' coro=<BaseApiClient.aclose() done, defined at C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\_api_client.py:2504> exception=AttributeError("'BaseApiClient' object has no attribute '_async_httpx_client'")>
+Traceback (most recent call last):
+  File "C:\Users\shubh\AppData\Roaming\Python\Python314\site-packages\google\genai\_api_client.py", line 2509, in aclose
+    await self._async_httpx_client.aclose()  # type: ignore[union-attr]
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BaseApiClient' object has no attribute '_async_httpx_client'
+============================================================
+  LIVE ACADEMIC LITERATURE INTEGRATION TEST
+============================================================
+
+[1/3] Testing live arXiv query...
+  arXiv returned 3 papers
+    - Domain-Dependent Speaker Diarization for the Third DIHARD Challenge (2021) [arxiv]
+    - Online speaker diarization of meetings guided by speech separation (2024) [arxiv]
+    - SpeechPrompt: Prompting Speech Language Models for Speech Processing Tasks (2024) [arxiv]
+  [OK] arXiv
+
+[2/3] Testing live Semantic Scholar query...
+  Semantic Scholar returned 0 papers
+  [OK] Semantic Scholar
+
+[3/3] Testing full PaperReaderAgent pipeline (arXiv + S2, dedup)...
+  PaperReaderAgent produced 5 papers on Blackboard
+    - [arxiv] Domain-Dependent Speaker Diarization for the Third DIHARD Challenge
+    - [arxiv] Online speaker diarization of meetings guided by speech separation
+    - [arxiv] SpeechPrompt: Prompting Speech Language Models for Speech Processing Tasks
+    - [arxiv] End-to-End Integration of Speech Separation and Voice Activity Detection for Low-Latency Diarization of Telephone Conversations
+    - [arxiv] Advancing automatic speech recognition using feature fusion with self-supervised learning features: A case study on Fearless Steps Apollo corpus
+  [OK] PaperReaderAgent pipeline (5 papers)
+
+============================================================
+  TEST SUITE COMPLETE
+============================================================
